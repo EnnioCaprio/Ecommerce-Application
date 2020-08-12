@@ -19,5 +19,5 @@ app.use('/api/listProduct', ListProduct)
 
 
 app.listen(port, () => {
-    console.log('Listening on the port:', port)
+    console.log('Listening on the port', port)
 })
