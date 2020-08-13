@@ -174,7 +174,7 @@ const Products = () => {
             }
             <div className="products-list">
                 {
-                    products.map(product => ([
+                    products.map(product => (
                         <ListProducts
                             key={product.name}
                             info={product}
@@ -182,7 +182,7 @@ const Products = () => {
                             buy={buyProduct}
                             quantity={updateQuantity}
                         />
-                    ]))
+                    )) || []
                 }
             </div>
         </div>
