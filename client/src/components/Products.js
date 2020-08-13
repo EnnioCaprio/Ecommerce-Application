@@ -14,7 +14,7 @@ const Products = () => {
     const [error, setError] = useState(false)
     const [tokens, dispatchThree] = useContext(TokensContext)
 
-    console.log(products);
+    console.log(Array.from(products));
 
     let url = window.location.origin;
 
@@ -182,7 +182,7 @@ const Products = () => {
                             buy={buyProduct}
                             quantity={updateQuantity}
                         />
-                    )) || []
+                    ))
                 }
             </div>
         </div>
