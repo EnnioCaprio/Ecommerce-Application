@@ -9,7 +9,11 @@ const Registration = () => {
     const [user, dispatch] = useContext(UserContext);
     const [active, setActive] = useState(false)
 
-    const url = window.location.origin;
+    let url = window.location.origin;
+
+    if(url.includes(3)){
+        url = url.replace(3, 5)
+    }
 
     const [amount, setAmount] = useState(0);
 

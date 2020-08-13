@@ -7,7 +7,11 @@ export const ProductContext = createContext();
 export const ProductProvider = (props) => {
     const [products, dispatch] = useReducer(productReducer, []);
 
-    const url = window.location.origin;
+    let url = window.location.origin;
+
+    if(url.includes(3)){
+        url = url.replace(3, 5)
+    }
 
     useEffect(() => {
         axios.get(`${url}/api/product/`)

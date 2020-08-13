@@ -14,7 +14,11 @@ const Products = () => {
     const [error, setError] = useState(false)
     const [tokens, dispatchThree] = useContext(TokensContext)
 
-    const url = window.location.origin;
+    let url = window.location.origin;
+
+    if(url.includes(3)){
+        url = url.replace(3, 5)
+    }
 
     const addProduct = (e) => {
         e.preventDefault()

@@ -9,7 +9,11 @@ export const UserProvider = (props) => {
     const [user, dispatch] = useReducer(userReducer, []);
     const token = JSON.parse(localStorage.getItem('token'));
 
-    const url = window.location.origin;
+    let url = window.location.origin;
+
+    if(url.includes(3)){
+        url = url.replace(3, 5)
+    }
 
     useEffect(() => {
         const config = {
