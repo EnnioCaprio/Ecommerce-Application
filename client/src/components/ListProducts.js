@@ -8,8 +8,11 @@ const ListProduct = (props) => {
     const [tokens, dispatchThree] = useContext(TokensContext);
     const [products, dispatch] = useContext(ProductContext);
 
+    let url = window.location.origin;
 
-    const url = window.location.origin;
+    if(url.includes(3)){
+        url = url.replace(3, 5)
+    }
 
     const incrementCount = () => {
         setCount(count + 1)

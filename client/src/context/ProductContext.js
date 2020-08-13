@@ -8,7 +8,7 @@ export const ProductProvider = (props) => {
     const [products, dispatch] = useReducer(productReducer, []);
 
     let url = window.location.origin;
-
+    
     if(url.includes(3)){
         url = url.replace(3, 5)
     }
