@@ -1,5 +1,6 @@
 const express = require('express');
 require('./db/connection');
+const path = require('path');
 const env = require('dotenv');
 const app = express();
 const cors = require('cors');
