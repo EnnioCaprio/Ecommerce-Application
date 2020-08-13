@@ -8,7 +8,7 @@ import { TokensContext } from '../context/TokensContext';
 const Products = () => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState();
-    const [products, dispatch] = useContext(ProductContext);
+    const [products, dispatch] = useContext([ProductContext]);
     const [cart, dispatchTwo] = useContext(CartContext);
     const [count, setCount] = useState(1);
     const [error, setError] = useState(false)
