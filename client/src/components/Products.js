@@ -14,6 +14,8 @@ const Products = () => {
     const [error, setError] = useState(false)
     const [tokens, dispatchThree] = useContext(TokensContext)
 
+    const url = window.location.origin;
+
     const addProduct = (e) => {
         e.preventDefault()
         const names = products.map((p) => {
@@ -26,7 +28,7 @@ const Products = () => {
                 quantity: count
             }
             
-            axios.post('http://localhost:5000/api/product/createProduct', config)
+            axios.post(`${url}/api/product/createProduct`, config)
             .then(res => {
                 dispatch({
                     type: 'ADD_PRODUCT',
@@ -50,7 +52,7 @@ const Products = () => {
             name: newName,
             price: newPrice
         }
-        axios.patch('http://localhost:5000/api/product/' + id, updates)
+        axios.patch(`${url}/api/product/` + id, updates)
         .then(res => {
             dispatch({
                 type: 'UPDATE_PRODUCTS',
@@ -68,7 +70,7 @@ const Products = () => {
         }
         const cartData = cart.map(cart => cart.cartName)
         if(!(cartData.indexOf(name) > -1)){
-        axios.patch('http://localhost:5000/api/product/' + id, updates)
+        axios.patch(`${url}/api/product/` + id, updates)
         .then(res => {
             dispatch({
                 type: 'UPDATE_PRODUCT',
@@ -97,7 +99,7 @@ const Products = () => {
                     Authorization: `Bearer ${tokens}`
                 }
             }
-            axios.post('http://localhost:5000/api/listProduct/addProduct', configuration, params)
+            axios.post(`${url}/api/listProduct/addProduct`, configuration, params)
             .then(res => {
                 dispatchTwo({
                     type: 'ADD_CART_PRODUCT',
@@ -128,7 +130,7 @@ const Products = () => {
         <div>
             <div className="container-form">
                 <button onClick={() => {
-                    axios.delete('http://localhost:5000/api/product/')
+                    axios.delete(`${url}/api/product/`)
                     .then(res => {
                         dispatch({
                             type: 'DELETE_ALL_PROD',

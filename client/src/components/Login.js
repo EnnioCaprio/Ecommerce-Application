@@ -10,9 +10,11 @@ const Login = () => {
 
     const history = useHistory();
 
+    const url = window.location.origin;
+
     const loginSystem = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:5000/api/user/login', {
+        axios.post(`${url}/api/user/login`, {
             email,
             password
         })
@@ -28,11 +30,7 @@ const Login = () => {
         setEmail('');
         setPassword('');
     }
-    const getUsers = () => {
-        axios.get('http://localhost:5000/api/user/')
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-    }
+    
     return(
         <div>
             <div className="container-login">

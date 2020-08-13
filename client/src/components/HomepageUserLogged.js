@@ -12,13 +12,16 @@ const HomepageUserLogged = (props) => {
 
     const [newItems, setNewItems] = useState([])
 
+
+    const url = window.location.origin;
+
     useEffect(() => {
         const config = {
             headers:{
                 Authorization: 'Bearer ' + tokens
             }
         }
-        axios.get('http://localhost:5000/api/user/me', config)
+        axios.get(`${url}/api/user/me`, config)
         .then(res => {
             const userProductLength = res.data.boughtProducts.length;
             if(userProductLength === 1){

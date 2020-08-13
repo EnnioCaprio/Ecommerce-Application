@@ -11,9 +11,9 @@ export const CartProvider = (props) => {
 
     const [tokens, dispatchThree] = useContext(TokensContext);
 
-
+    const token = JSON.parse(localStorage.getItem('token'));
     
-    const token = JSON.parse(localStorage.getItem('token')) 
+    const url = window.location.origin;
 
 
     useEffect(() => {
@@ -23,7 +23,7 @@ export const CartProvider = (props) => {
             }
         }
         if(token.length > 0){
-            axios.get('http://localhost:5000/api/listProduct/', config)
+            axios.get(`${url}/api/listProduct/`, config)
             .then(res => {
                 dispatchTwo({
                     type: 'POPULATE_CART',

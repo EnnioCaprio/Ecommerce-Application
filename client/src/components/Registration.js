@@ -9,6 +9,8 @@ const Registration = () => {
     const [user, dispatch] = useContext(UserContext);
     const [active, setActive] = useState(false)
 
+    const url = window.location.origin;
+
     const [amount, setAmount] = useState(0);
 
     const registerUser = (e) => {
@@ -22,7 +24,7 @@ const Registration = () => {
                 amount
             }]
         }
-        axios.post('http://localhost:5000/api/user/registration', configuration)
+        axios.post(`${url}/api/user/registration`, configuration)
         .then(res => {
             dispatch({
                 type: 'REGISTRATION',

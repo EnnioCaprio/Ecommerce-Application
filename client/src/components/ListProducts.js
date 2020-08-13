@@ -9,6 +9,8 @@ const ListProduct = (props) => {
     const [products, dispatch] = useContext(ProductContext);
 
 
+    const url = window.location.origin;
+
     const incrementCount = () => {
         setCount(count + 1)
     }
@@ -27,7 +29,7 @@ const ListProduct = (props) => {
                 <div className="product-background">
                     <button onClick={() => {
                         const id = props.info._id
-                        axios.delete('http://localhost:5000/api/product/' + id)
+                        axios.delete(`${url}/api/product/` + id)
                         .then(res => {
                             dispatch({
                                 type: 'DELETE_PRODUCTS',

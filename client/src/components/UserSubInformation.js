@@ -13,11 +13,11 @@ const UserSubInformation = (props) => {
         setClick(!click)
     }
 
-    const token = JSON.parse(localStorage.getItem('token'))
-
 
     
-    const history = useHistory();
+    const token = JSON.parse(localStorage.getItem('token'))
+
+    const url = window.location.origin;
 
     const addTheWallet = (id) => {
         const body = {
@@ -31,7 +31,7 @@ const UserSubInformation = (props) => {
                 Authorization: 'Bearer ' + token
             }
         }
-        axios.patch('http://localhost:5000/api/user/' + id, body, config)
+        axios.patch(`${url}/api/user/` + id, body, config)
         .then(res => {
             dispatch({
                 type: 'ADDED_WALLET',
@@ -57,7 +57,7 @@ const UserSubInformation = (props) => {
                 Authorization: 'Bearer ' + token
             }
         }
-        axios.patch('http://localhost:5000/api/user/' + id, body, configuration)
+        axios.patch(`${url}/api/user/` + id, body, configuration)
         .then(res => {
             dispatch({
                 type: 'DELETE_WALLET',

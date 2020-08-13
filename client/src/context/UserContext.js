@@ -7,7 +7,9 @@ export const UserContext = createContext();
 
 export const UserProvider = (props) => {
     const [user, dispatch] = useReducer(userReducer, []);
-    const token = JSON.parse(localStorage.getItem('token'))
+    const token = JSON.parse(localStorage.getItem('token'));
+
+    const url = window.location.origin;
 
     useEffect(() => {
         const config = {
@@ -16,7 +18,7 @@ export const UserProvider = (props) => {
             }
         }
         if(token){
-            axios.get('http://localhost:5000/api/user/me', config)
+            axios.get(`${url}/api/user/me`, config)
             .then(res => {
                 dispatch({
                     type: 'POPULATE_USER',

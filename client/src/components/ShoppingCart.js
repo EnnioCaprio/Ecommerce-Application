@@ -10,10 +10,13 @@ const ShoppingCart = () => {
     const [user, dispatch] = useContext(UserContext);
 
     const id = user.map(u => u._id)
+
     const token = JSON.parse(localStorage.getItem('token'));
 
+    const url = window.location.origin;
+
     const deleteProd = (_id) => {
-        axios.delete('http://localhost:5000/api/listProduct/' + _id)
+        axios.delete(`${url}/api/listProduct/` + _id)
         .then(res => {
             dispatchTwo({
                 type: 'REMOVE_CART_PRODUCT',
@@ -24,7 +27,7 @@ const ShoppingCart = () => {
     }
     
     const deletedAll = () => {
-        axios.delete('http://localhost:5000/api/listProduct/')   
+        axios.delete(`${url}/api/listProduct/`)   
         .then(res => {
             dispatchTwo({
                 type: 'DELETE_ALL_CART',
@@ -67,7 +70,7 @@ const ShoppingCart = () => {
                 amount: userAmount.join('') - totalAdd()
             }]
         }
-        axios.patch('http://localhost:5000/api/user/' + id.join(''), body, config)
+        axios.patch(`${url}/api/user/` + id.join(''), body, config)
         .then(res => {
             dispatch({
                 type: 'UPDATE_AMOUNT',
@@ -96,7 +99,7 @@ const ShoppingCart = () => {
             }
         }
         if(userContent.join('') >= totalAdd()){
-            axios.patch('http://localhost:5000/api/user/' + id, config, header)
+            axios.patch(`${url}/api/user/` + id, config, header)
             .then(res => {
                 dispatch({
                     type: 'CONFIRM_ALL',

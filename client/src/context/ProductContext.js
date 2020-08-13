@@ -7,8 +7,10 @@ export const ProductContext = createContext();
 export const ProductProvider = (props) => {
     const [products, dispatch] = useReducer(productReducer, []);
 
+    const url = window.location.origin;
+
     useEffect(() => {
-        axios.get('https://ecommerce-application-project.herokuapp.com/api/product/')
+        axios.get(`${url}/api/product/`)
         .then(res => {
             dispatch({
                 type: 'POPULATE_PRODUCTS',
