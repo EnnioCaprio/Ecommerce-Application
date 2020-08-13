@@ -10,7 +10,7 @@ export const ProductProvider = (props) => {
     const url = window.location.origin;
 
     useEffect(() => {
-        axios.get(`${url}/api/product/`)
+        axios.get(`http://localhost:5000/api/product/`)
         .then(res => {
             dispatch({
                 type: 'POPULATE_PRODUCTS',
