@@ -9,6 +9,14 @@ const ListProduct = require('./routers/ListProduct');
 
 env.config();
 
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+}
+
+app.get('*', (request, response) => {
+	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
@@ -19,5 +27,5 @@ app.use('/api/listProduct', ListProduct)
 
 
 app.listen(port, () => {
-    console.log('Listening on the port', port)
+    console.log('Listening on the port:', port)
 })
