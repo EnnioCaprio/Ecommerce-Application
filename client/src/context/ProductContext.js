@@ -8,7 +8,7 @@ export const ProductProvider = (props) => {
     const [products, dispatch] = useReducer(productReducer, []);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/product/')
+        axios.get('https://ecommerce-application-project.herokuapp.com/api/product/')
         .then(res => {
             dispatch({
                 type: 'POPULATE_PRODUCTS',
