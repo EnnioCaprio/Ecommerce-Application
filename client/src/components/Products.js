@@ -8,11 +8,13 @@ import { TokensContext } from '../context/TokensContext';
 const Products = () => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState();
-    const [products, dispatch] = useContext([ProductContext]);
+    const [products, dispatch] = useContext(ProductContext);
     const [cart, dispatchTwo] = useContext(CartContext);
     const [count, setCount] = useState(1);
     const [error, setError] = useState(false)
     const [tokens, dispatchThree] = useContext(TokensContext)
+
+    console.log(products);
 
     let url = window.location.origin;
 
@@ -172,6 +174,9 @@ const Products = () => {
             }
             <div className="products-list">
                 {
+                    !products ? 
+                    'no prod'
+                    :
                     products.map(product => (
                         <ListProducts
                             key={product.name}
