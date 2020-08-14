@@ -24,30 +24,30 @@ const Navbar = () => {
                         <FontAwesomeIcon icon={faBars} size="2x"/>
                     </button>
                 </div>
-                <div className={activeIcon === true ? 'open' : ''}>
-                    <ul className="list-link action">
-                        <Link to="/products" className="a">
-                            <li className="list-links">Product</li>
+                <div className="header-list">
+                    <ul className="list-link" id={activeIcon === true ? 'open' : ''}>
+                        <Link to="/products" className="list-links">
+                            <li>Product</li>
                         </Link>
                         {
                         tokens.length > 0 ? 
-                        <Link to="/shopping" style={{textDecoration: 'none'}} className="a">
-                            <li className="list-links"><FontAwesomeIcon icon={faShoppingCart} size="1x" /><span className="number-item">{cart.length}</span></li>
+                        <Link to="/shopping" className="list-links" style={{textDecoration: 'none'}}>
+                            <li><FontAwesomeIcon icon={faShoppingCart} size="1x" /><span className="number-item">{cart.length}</span></li>
                             </Link> 
                                 : 
                             ''
                         }
                         {
                             tokens.length > 0 ? 
-                            <Link to="/" className="a" onClick={() => { 
+                            <Link to="/" className="list-links" onClick={() => { 
                                 dispatchThree({type: 'LOGOUT_USER'})
                                 dispatchTwo({type: 'CLEANING_CART', cart})
-                            }}><li className="list-links">Logout</li></Link>
+                            }}><li>Logout</li></Link>
                                 : 
-                            <Link to="/login" className="a"><li className="list-links">Login</li></Link>
+                            <Link to="/login" className="list-links"><li>Login</li></Link>
                         }
                         {
-                            tokens.length > 0 ? <Link to="/me" className="a"><li className="list-links">Profile</li></Link> : ''
+                            tokens.length > 0 ? <Link to="/me" className="list-links"><li>Profile</li></Link> : ''
                         }
                     </ul>
                 </div>
