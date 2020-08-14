@@ -12,8 +12,11 @@ const HomepageUserLogged = (props) => {
 
     const [newItems, setNewItems] = useState([])
 
+    let url = window.location.origin;
 
-    const url = window.location.origin;
+    if(url.includes(3)){
+        url = url.replace(3, 5)
+    }
 
     useEffect(() => {
         const config = {

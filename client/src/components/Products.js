@@ -20,6 +20,8 @@ const Products = () => {
         url = url.replace(3, 5)
     }
 
+    console.log(products)
+
     const addProduct = (e) => {
         e.preventDefault()
         const names = products.map((p) => {
