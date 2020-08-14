@@ -14,8 +14,6 @@ const Products = () => {
     const [error, setError] = useState(false)
     const [tokens, dispatchThree] = useContext(TokensContext)
 
-    console.log(Array.from(products));
-
     let url = window.location.origin;
 
     if(url.includes(3)){
@@ -175,13 +173,7 @@ const Products = () => {
             <div className="products-list">
                 {
                     products.map(product => (
-                        <ListProducts
-                            key={product.name}
-                            info={product}
-                            update={updateProduct}
-                            buy={buyProduct}
-                            quantity={updateQuantity}
-                        />
+                        <h1 key={product._id}>ciao</h1>
                     ))
                 }
             </div>
