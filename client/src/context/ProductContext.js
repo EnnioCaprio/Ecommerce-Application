@@ -20,6 +20,7 @@ export const ProductProvider = (props) => {
                 type: 'POPULATE_PRODUCTS',
                 products: res.data
             })
+            console.log(res)
         })
         .catch(err => {
             console.log(err)
