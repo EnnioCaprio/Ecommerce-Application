@@ -11,7 +11,7 @@ export const CartProvider = (props) => {
 
     const [tokens, dispatchThree] = useContext(TokensContext);
 
-    const token = JSON.parse(localStorage.getItem('token'));
+    const token = JSON.parse(sessionStorage.getItem('token'));
     
     let url = window.location.origin;
 

@@ -11,7 +11,7 @@ const ShoppingCart = () => {
 
     const id = user.map(u => u._id)
 
-    const token = JSON.parse(localStorage.getItem('token'));
+    const token = JSON.parse(sessionStorage.getItem('token'));
 
     let url = window.location.origin;
 

@@ -8,7 +8,7 @@ export const TokensProvider = (props) => {
     const [tokens, dispatchThree] = useReducer(tokensReducers, '');
 
     useEffect(() => {
-        const parsedToken = JSON.parse(localStorage.getItem('token'));
+        const parsedToken = JSON.parse(sessionStorage.getItem('token'));
         console.log(parsedToken)
         if(parsedToken){
             dispatchThree({
@@ -20,7 +20,7 @@ export const TokensProvider = (props) => {
 
 
     useEffect(() => {
-        localStorage.setItem('token', JSON.stringify(tokens))
+        sessionStorage.setItem('token', JSON.stringify(tokens))
     }, [tokens])
 
     return(
