@@ -11,7 +11,7 @@ const Homepage = () => {
     return(
         <div>
             {
-                tokens.length === 0 ?
+                tokens.length === 0 || null ?
                 <div>
                     <div className="container-content">
                         <div className="background-overview">
