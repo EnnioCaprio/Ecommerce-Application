@@ -7,15 +7,13 @@ export const UserContext = createContext();
 
 export const UserProvider = (props) => {
     const [user, dispatch] = useReducer(userReducer, []);
-    const token = JSON.parse(sessionStorage.getItem('token'));
+    const token = JSON.parse(localStorage.getItem('token'));
 
     let url = window.location.origin;
 
     if(url.includes(3)){
         url = url.replace(3, 5)
     }
-
-    console.log(user)
 
     useEffect(() => {
         const config = {
