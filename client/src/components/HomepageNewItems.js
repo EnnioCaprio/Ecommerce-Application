@@ -8,9 +8,9 @@ const HomepageNewItems = (props) => {
             </div>
             <div className="user-products-items-two">
                 <ul className="user-products-list">
-                    <li className="user-products-list-item"><label>Product</label> {props.text.cartName}</li>
-                    <li className="user-products-list-item"><label>Price</label> {props.text.cartPrice}</li>
-                    <li className="user-products-list-item"><label>Quantity</label> {props.text.cartQuantity}</li>
+                    <li className="user-products-list-item"><label><b>Product</b></label> {props.text.cartName}</li>
+                    <li className="user-products-list-item"><label><b>Price</b></label> {props.text.cartPrice}</li>
+                    <li className="user-products-list-item"><label><b>Quantity</b></label> {props.text.cartQuantity}</li>
                 </ul>
             </div>
         </div>

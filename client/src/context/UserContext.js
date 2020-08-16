@@ -9,6 +9,8 @@ export const UserProvider = (props) => {
     const [user, dispatch] = useReducer(userReducer, []);
     const token = JSON.parse(localStorage.getItem('token'));
 
+    console.log(user);
+
     let url = window.location.origin;
 
     if(url.includes(3)){
@@ -26,9 +28,8 @@ export const UserProvider = (props) => {
             .then(res => {
                 dispatch({
                     type: 'POPULATE_USER',
-                    user: res.data
+                    user: res.data.users
                 })
-                console.log(res)
             })
             .catch(err => console.log(err))
             }

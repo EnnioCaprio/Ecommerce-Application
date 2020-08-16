@@ -11,7 +11,7 @@ const Products = () => {
     const [products, dispatch] = useContext(ProductContext);
     const [cart, dispatchTwo] = useContext(CartContext);
     const [count, setCount] = useState(1);
-    const [error, setError] = useState(false)
+    const [error, setError] = useState(undefined)
     const [tokens, dispatchThree] = useContext(TokensContext)
 
     let url = window.location.origin;
@@ -19,8 +19,6 @@ const Products = () => {
     if(url.includes(3)){
         url = url.replace(3, 5)
     }
-
-    console.log(products)
 
     const addProduct = (e) => {
         e.preventDefault()
@@ -42,9 +40,11 @@ const Products = () => {
                 })
             })
             .catch(err => err)
-            setError(false)
         }else{
-            setError(true)
+            setError("Cannot add the same product")
+            setTimeout(() => {
+                setError(undefined);
+            }, 2600)
         }
         setName('')
         setPrice()
@@ -70,6 +70,19 @@ const Products = () => {
         .catch(err => console.log(err))
     }
 
+    const deleteFinishedItem = (id, name, quan) => {
+        const cartData = cart.map((cart) => cart.cartName)
+        if(quan < 1 && !(cartData.indexOf(name) > -1)){
+            axios.delete(`${url}/api/product/` + id)
+            .then(res => {
+                dispatch({
+                    type: 'DELETE_PRODUCTS',
+                    id: res.data.product._id
+                })
+            })
+        }
+    }
+
     const updateQuantity = (id, name, quantity) => {
         const updates = {
             quantity
@@ -83,7 +96,6 @@ const Products = () => {
                 id: res.data._id,
                 quantity: res.data.quantity
             })
-            console.log(res)
         })
         .catch(err => console.log(err))
         }
@@ -114,9 +126,11 @@ const Products = () => {
                 console.log(res)
             })
             .catch(err => console.log(err))
-            setError(false)
         }else{
-            setError(true)
+            setError("You already bought this product")
+            setTimeout(() => {
+                setError(undefined)
+            }, 2600)
         }
     }
 
@@ -170,7 +184,10 @@ const Products = () => {
             </div>
             { products.length === 0 ? <h2 className="title-product">No products</h2> : <h2 className="title-product">Here the list of products</h2> }
             {
-                error === true ? <h2>Cannot add same name</h2> : ''
+                error ? 
+            <h2 className="title-error">{error}</h2> 
+                : 
+                ''
             }
             <div className="products-list">
                 {
@@ -181,6 +198,7 @@ const Products = () => {
                             update={updateProduct}
                             buy={buyProduct}
                             quantity={updateQuantity}
+                            delete={deleteFinishedItem}
                         />
                     ))
                 }

@@ -44,7 +44,6 @@ const ListProduct = (props) => {
                 </div>
                 <div className="product-descriptions">    
                     <ul className="product-descriptions-items">
-                        <li>{props.info._id}</li>
                         <li>{props.info.name}</li>
                         <li>{props.info.price}</li>
                         <li>{props.info.quantity}</li>
@@ -66,6 +65,7 @@ const ListProduct = (props) => {
                         const quantity = props.info.quantity - count;
                         props.buy(id, name, price, count)
                         props.quantity(id, name, quantity)
+                        props.delete(id, name, quantity)
                     }} disabled={(tokens.length === 0 && count < 1) || (tokens.length < 3)}>Add to the cart</button>
                     <button onClick={() => {
                         const id = props.info._id;

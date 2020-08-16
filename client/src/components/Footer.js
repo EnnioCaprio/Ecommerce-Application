@@ -10,8 +10,4 @@ const Footer = () => {
     )
 }
 
-
-
-
-
 export { Footer as default }

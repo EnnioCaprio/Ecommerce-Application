@@ -14,6 +14,7 @@ import { TokensProvider } from './context/TokensContext';
 import { UserProvider } from './context/UserContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import PublicRoute from './components/PublicRoute';
+import { UsersProvider } from './context/UsersContext';
 
 import './App.css';
 function App() {
@@ -22,28 +23,30 @@ function App() {
       <TokensProvider>
         <ProductProvider>
           <CartProvider>
-            <UserProvider>
-              <div className="container">
-                <Navbar />
-                  <Switch>
-                    <Route path="/" exact component={Homepage} />
-                    <Route path="/products" component={Products} />
-                    <ProtectedRoute exact path="/shopping">
-                      <ShoppingCart/>
-                    </ProtectedRoute>
-                    <PublicRoute exact path="/registration">
-                      <Registration />
-                    </PublicRoute>
-                    <PublicRoute exact path="/login">
-                      <Login />
-                    </PublicRoute>
-                    <ProtectedRoute exact path="/me">
-                      <UserUi />
-                    </ProtectedRoute>
-                  </Switch>
-                </div>
-              <Footer />
-            </UserProvider>  
+            <UsersProvider>
+              <UserProvider>
+                <div className="container">
+                  <Navbar />
+                    <Switch>
+                      <Route path="/" exact component={Homepage} />
+                      <Route path="/products" component={Products} />
+                      <ProtectedRoute exact path="/shopping">
+                        <ShoppingCart/>
+                      </ProtectedRoute>
+                      <PublicRoute exact path="/registration">
+                        <Registration />
+                      </PublicRoute>
+                      <PublicRoute exact path="/login">
+                        <Login />
+                      </PublicRoute>
+                      <ProtectedRoute exact path="/me">
+                        <UserUi />
+                      </ProtectedRoute>
+                    </Switch>
+                  </div>
+                <Footer />
+              </UserProvider>  
+            </UsersProvider>
           </CartProvider>
         </ProductProvider>
       </TokensProvider>

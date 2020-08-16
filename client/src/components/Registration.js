@@ -1,13 +1,17 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../context/UserContext';
+import { UsersContext } from '../context/UsersContext';
 import axios from 'axios';
 
 const Registration = () => {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [error, setError] = useState(undefined)
     const [user, dispatch] = useContext(UserContext);
     const [active, setActive] = useState(false)
+    const [amount, setAmount] = useState(0);
+    const [users, dispatchUsers] = useContext(UsersContext);
 
     let url = window.location.origin;
 
@@ -15,10 +19,11 @@ const Registration = () => {
         url = url.replace(3, 5)
     }
 
-    const [amount, setAmount] = useState(0);
-
     const registerUser = (e) => {
         e.preventDefault();
+
+        const usersEmail = users.map(u => u.email);
+
         const configuration = {
             name,
             email,
@@ -28,17 +33,27 @@ const Registration = () => {
                 amount
             }]
         }
-        axios.post(`${url}/api/user/registration`, configuration)
-        .then(res => {
-            dispatch({
-                type: 'REGISTRATION',
-                name: res.name,
-                email: res.email,
-                password: res.password,
-                wallet: res.wallet
+        if(!(usersEmail.indexOf(email) > -1)){
+            axios.post(`${url}/api/user/registration`, configuration)
+            .then(res => {
+                dispatch({
+                    type: 'REGISTRATION',
+                    name: res.name,
+                    email: res.email,
+                    password: res.password,
+                    wallet: res.wallet
+                })
+                console.log(res.data)
             })
-            console.log(res.data)
-        })
+            .catch(e => {
+                console.log(e)
+            })
+        }else{
+            setError('user already exists')
+            setTimeout(() => {
+                setError('')
+            }, 2000)
+        }
         setName('')
         setEmail('')
         setPassword('')
@@ -50,6 +65,7 @@ const Registration = () => {
         <div>
             <div className="container-registration">
                 <div className="container-sub-registration">
+                { error ? <h3 className="title-error">{error}</h3> : ''}
                 <h3 className="registration-title">Registration</h3>
                     <form onSubmit={registerUser} className="form-registration">
                         <input type="text" value={name || ''} className="input-registration" onChange={(e) => setName(e.target.value)} placeholder="name" /><br />

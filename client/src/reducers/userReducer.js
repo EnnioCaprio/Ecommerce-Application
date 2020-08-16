@@ -17,7 +17,7 @@ const userReducer = (state, action) => {
         case 'UPDATE_AMOUNT':
             return state.map(s => s._id === action.id ? {...s, wallet: [{ active: true, amount: action.amount }]} : s)
         case 'POPULATE_USER':
-            return [action.user]
+            return action.user
         case 'DELETE_WALLET':
             return state.map(k => k._id === action.id ? {...k, wallet: [{ active: action.active, amount: action.amount }], totalSpent: action.totalSpent } : k)
         default:
